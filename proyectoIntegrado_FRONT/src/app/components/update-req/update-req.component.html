@@ -1,0 +1,27 @@
+<form class="container mt-5" (ngSubmit)="onSubmit()" #requestForm="ngForm">
+  <h1>Editar solicitud</h1>
+  <fieldset>
+    <div class="form-group">
+      <label for="name" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="request.name">
+    </div>
+
+    <div class="form-group">
+      <label for="desc" class="form-label">Descripción</label>
+      <textarea class="form-control" id="desc" name="desc" required [(ngModel)]="request.description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="date" class="form-label">Fecha</label>
+      <input type="datetime-local" class="form-control" id="date" name="date" required [(ngModel)]="request.date">
+    </div>
+
+    <div class="form-group">
+      <label for="location" class="form-label">Ubicación</label>
+      <input type="text" class="form-control" id="location" name="location" required [(ngModel)]="request.location">
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!requestForm.form.valid">Enviar</button>&nbsp;
+    <button class="btn btn-dark" routerLink="/customerRequests/{{customer.id}}">Cancelar</button>
+  </fieldset>
+</form>

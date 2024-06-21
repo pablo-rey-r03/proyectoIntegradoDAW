@@ -1,0 +1,30 @@
+@if (requests.length > 0) {
+<h1 class="container mt-4">Mis solicitudes</h1>
+<div class="table-responsive m-5">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <th>Solicitud</th>
+      <th>Fecha</th>
+      <th>Ubicación</th>
+      <th>Modificar</th>
+      <th>Borrar</th>
+    </thead>
+    <tbody>
+      @for (r of requests; track $index) {
+      <tr>
+        <td>{{ r.name }}</td>
+        <td>{{ r.date | date }}</td>
+        <td>{{ r.location }}</td>
+        <td><button class="btn btn-warning" routerLink="/updateReq/{{r.id}}">Editar</button></td>
+        <td><button class="btn btn-danger" (click)="borrar(r.id, r.name)">Borrar</button></td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+} @else {
+<h1 class="container mt-4">No tienes solicitudes publicadas :(</h1>
+}
+<br>
+<button class="btn btn-success" routerLink="/newReq">Crear nueva solicitud</button>
+<button class="btn btn-dark" routerLink="/customer">Volver</button>

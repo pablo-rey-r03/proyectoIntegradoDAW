@@ -1,0 +1,85 @@
+* {
+  font-family: "GFS Neohellenic", sans-serif;
+}
+
+.container.greek-style {
+  background: #d6d6d6;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-icon {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
+  border-radius: 10em;
+}
+
+h1 {
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+input {
+  width: calc(100% - 10px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 25px;
+}
+
+button.btn.btn-success {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+  padding: 10px 20px;
+  font-size: 25px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.btn.btn-success:hover {
+  background-color: #4cae4c;
+  transform: scale(1.05);
+}
+
+blockquote {
+  font-style: italic;
+  color: #666;
+  font-size: larger;
+}
+
+blockquote a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.danger {
+  color: #d9534f;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: none;
+  animation: fadeout 3s ease-in;
+}
+
+.danger.show {
+  display: block;
+}

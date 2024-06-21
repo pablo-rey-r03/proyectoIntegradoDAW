@@ -1,0 +1,83 @@
+<div class="d-flex" id="wrapper">
+  <div class="bg-dark text-white border-end" id="sidebar-wrapper">
+    <div class="sidebar-heading border-bottom bg-primary">{{customer.name + " " + customer.surname}}</div>
+    <div class="list-group list-group-flush">
+      <div class="list-group-item list-group-item-action bg-dark text-white">{{customer.address}}</div>
+      <div class="list-group-item list-group-item-action bg-dark text-white">{{customer.birthDate | date}}</div>
+      <div class="list-group-item list-group-item-action bg-dark text-white">{{customer.phoneNumber}}</div>
+      <div class="list-group-item list-group-item-action bg-dark text-white">{{customer.user.email}}</div>
+      <button class="btn btn-warning" routerLink="/updateCus/{{customer.id}}">Editar perfil</button>
+    </div><br>
+    <img src="../../../assets/image/Icono.jpeg" style="max-width: 100%; height: auto;"><br><br>
+    <div class="list-group list-group-flush">
+      <a class="list-group-item list-group-item-action bg-dark text-white"
+        routerLink="/customerRequests/{{customer.id}}">Mis solicitudes</a>
+      <a href="#" class="list-group-item list-group-item-action bg-dark text-white" (click)="logout()">Cerrar sesión</a>
+      <a href="#" class="list-group-item list-group-item-action bg-dark text-danger"
+        (click)="deleteAccount(customer.id)">Eliminar cuenta</a>
+    </div>
+  </div>
+  <br><br><br>
+  <div id="page-content-wrapper">
+    <button class="btn" id="menu-toggle" (click)="toggleMenu()">
+      <div class="menu-icon">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </button>
+    <div class="container-fluid">
+      <h1 class="mt-4">Actividades publicadas en el ÁGORA</h1>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <tbody>
+            @for (a of activities; track $index) {
+            <tr (click)="openModal(a)">
+              <td>{{ a.name }}</td>
+              <td>{{ a.date | date }}</td>
+              <td>{{ a.location }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" [class.show]="isModalOpen" [class.fade]="!isModalOpen">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ selectedActivity?.name }}</h4>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Descripción:</strong> {{ selectedActivity?.description }}</p>
+        <p><strong>Fecha:</strong> {{ selectedActivity?.date | date: 'fullDate' }}</p>
+        <p><strong>Ubicación:</strong> {{ selectedActivity?.location }}</p>
+        <p><strong>Precio:</strong> {{ selectedActivity?.price | currency: 'EUR' }}</p>
+        <p><strong>Duración:</strong> {{ selectedActivity?.duration }}</p>
+        <p><strong>Plazas disponibles:</strong> {{ selectedActivity?.availableQuota }}/{{ selectedActivity?.maxQuota }}
+        </p>
+        @if (selectedActivity?.requiredMats) {
+        <p><strong>Materiales necesarios:</strong> {{ selectedActivity?.requiredMats }}</p>
+        }
+        @if (selectedActivity?.providedMats) {
+        <p><strong>Materiales aportados:</strong> {{ selectedActivity?.providedMats }}</p>
+        }
+        @if (selectedActivity?.recommendedFormation) {
+        <p><strong>Formación recomendada:</strong> {{ selectedActivity?.recommendedFormation }}</p>
+        }
+      </div>
+      <div class="modal-header">
+        <h5 class="modal-title">Strategos</h5>
+      </div>
+      <div class="modal-body">
+        <p><strong>{{ selectedActivity?.offerer?.name + " " + selectedActivity?.offerer?.surname}}</strong> </p>
+        <p><strong>Email:</strong> {{ selectedActivity?.offerer?.user?.email }}</p>
+        <p><strong>Teléfono:</strong> {{ selectedActivity?.offerer?.phoneNumber }}</p>
+      </div>
+    </div>
+  </div>
+</div>

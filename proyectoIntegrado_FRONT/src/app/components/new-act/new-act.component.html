@@ -1,0 +1,60 @@
+<form class="container mt-5" (ngSubmit)="onSubmit()" #activityForm="ngForm">
+  <h1>Nueva actividad</h1>
+  <fieldset>
+    <div class="form-group">
+      <label for="name" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="activity.name">
+    </div>
+
+    <div class="form-group">
+      <label for="desc" class="form-label">Descripción</label>
+      <textarea class="form-control" id="desc" name="desc" required [(ngModel)]="activity.description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="date" class="form-label">Fecha</label>
+      <input type="datetime-local" class="form-control" id="date" name="date" required [(ngModel)]="activity.date">
+    </div>
+
+    <div class="form-group">
+      <label for="location" class="form-label">Ubicación</label>
+      <input type="text" class="form-control" id="location" name="location" required [(ngModel)]="activity.location">
+    </div>
+
+    <div class="form-group">
+      <label for="price" class="form-label">Precio (€)</label>
+      <input type="number" class="form-control" id="price" name="price" required min="0" [(ngModel)]="activity.price">
+    </div>
+
+    <div class="form-group">
+      <label for="duration" class="form-label">Duración</label>
+      <input type="text" class="form-control" id="duration" name="duration" required [(ngModel)]="activity.duration">
+    </div>
+
+    <div class="form-group">
+      <label for="maxQuota" class="form-label">Cupo Máximo</label>
+      <input type="number" class="form-control" id="maxQuota" name="maxQuota" min="1" [(ngModel)]="activity.maxQuota">
+    </div>
+
+    <div class="form-group">
+      <label for="requiredMats" class="form-label">Materiales necesarios (opcional):</label>
+      <textarea class="form-control" id="requiredMats" name="requiredMats"
+        [(ngModel)]="activity.requiredMats"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="providedMats" class="form-label">Materiales suministrados (opcional):</label>
+      <textarea class="form-control" id="providedMats" name="providedMats"
+        [(ngModel)]="activity.providedMats"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="recommendedFormation" class="form-label">Formación recomendada (opcional):</label>
+      <textarea class="form-control" id="recommendedFormation" name="recommendedFormation"
+        [(ngModel)]="activity.recommendedFormation"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!activityForm.form.valid">Enviar</button>&nbsp;
+    <button class="btn btn-dark" routerLink="/offererActivities/{{offerer.id}}">Cancelar</button>
+  </fieldset>
+</form>

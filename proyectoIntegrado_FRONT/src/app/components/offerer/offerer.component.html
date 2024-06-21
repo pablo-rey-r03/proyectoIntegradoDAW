@@ -1,0 +1,80 @@
+<div class="d-flex" id="wrapper">
+  <div class="bg-dark text-white border-end" id="sidebar-wrapper">
+    <div class="sidebar-heading border-bottom"><b>{{offerer.name + " " + offerer.surname}}</b></div>
+    <div class="list-group list-group-flush">
+      <div class="list-group-item list-group-item-action bg-dark text-white">{{offerer.address}}</div>
+      <div class="list-group-item list-group-item-action bg-dark text-white">{{offerer.birthDate | date}}</div>
+      <div class="list-group-item list-group-item-action bg-dark text-white">{{offerer.phoneNumber}}</div>
+      <div class="list-group-item list-group-item-action bg-dark text-white">{{offerer.formation}}</div>
+      <div class="list-group-item list-group-item-action bg-dark text-white">{{offerer.user.email}}</div>
+      <button class="btn btn-warning" id="edit-profile-btn" routerLink="/updateOff/{{offerer.id}}">Editar
+        perfil</button>
+    </div>
+    <br>
+    <img src="../../../assets/image/Icono.jpeg" alt="Imagen de perfil" style="max-width: 100%; height: auto;">
+    <br><br>
+    <div class="list-group list-group-flush">
+      <a class="list-group-item list-group-item-action bg-dark text-white"
+        routerLink="/offererActivities/{{offerer.id}}">Mis actividades</a>
+      <a href="#" class="list-group-item list-group-item-action bg-dark text-white" id="logout-btn"
+        (click)="logout()">Cerrar sesión</a>
+      <a href="#" class="list-group-item list-group-item-action bg-dark text-danger" id="delete-account-btn"
+        (click)="deleteAccount(offerer.id)">Eliminar cuenta</a>
+    </div>
+  </div>
+  <div id="page-content-wrapper">
+    <button class="btn" id="menu-toggle" (click)="toggleMenu()">
+      <div class="menu-icon">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+    </button>
+    <div class="container-fluid">
+      @if (requests.length > 0) {
+      <h1 class="mt-4">Solicitudes publicadas en el ÁGORA</h1>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <tbody>
+            @for (r of requests; track $index) {
+            <tr (click)="openModal(r)">
+              <td>{{ r.name }}</td>
+              <td>{{ r.date | date: 'fullDate' }}</td>
+              <td>{{ r.location }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      } @else {
+      <h1>No hay solicitudes publicadas en el ÁGORA</h1>
+      }
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" [class.show]="isModalOpen" [class.fade]="!isModalOpen" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ selectedRequest?.name }}</h4>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Descripción:</strong> {{ selectedRequest?.description }}</p>
+        <p><strong>Fecha:</strong> {{ selectedRequest?.date | date: 'fullDate' }}</p>
+        <p><strong>Ubicación:</strong> {{ selectedRequest?.location }}</p>
+      </div>
+      <hr>
+      <div class="modal-header">
+        <h5 class="modal-customer">Polites</h5>
+      </div>
+      <div class="modal-body">
+        <p><strong>{{ selectedRequest?.customer?.name + " " + selectedRequest?.customer?.surname }}</strong></p>
+        <p><strong>Email:</strong> {{ selectedRequest?.customer?.user?.email }}</p>
+        <p><strong>Teléfono:</strong> {{ selectedRequest?.customer?.phoneNumber }}</p>
+      </div>
+    </div>
+  </div>
+</div>

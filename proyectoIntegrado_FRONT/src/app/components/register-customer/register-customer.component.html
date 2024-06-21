@@ -1,0 +1,111 @@
+<div class="container mt-5">
+  <h1>Registro de POLITES</h1>
+  <form (ngSubmit)="onSubmit()" #registerCustomerForm="ngForm">
+    <fieldset>
+      <div class="form-group">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Nombre" [(ngModel)]="customer.name"
+          name="nombre" required>
+        @if (registerCustomerForm.submitted && !registerCustomerForm.controls['nombre'].valid) {
+        <div class="text-danger">
+          El nombre es obligatorio.
+        </div>
+        }
+
+      </div>
+
+      <div class="form-group">
+        <label for="apellidos" class="form-label">Apellidos</label>
+        <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" [(ngModel)]="customer.surname"
+          name="apellidos" required>
+        @if(registerCustomerForm.submitted && !registerCustomerForm.controls['apellidos'].valid) {
+        <div class="text-danger">
+          Los apellidos son obligatorios.
+        </div>
+        }
+
+      </div>
+
+      <div class="form-group">
+        <label for="direccion" class="form-label">Dirección</label>
+        <input type="text" class="form-control" id="direccion" placeholder="Dirección" [(ngModel)]="customer.address"
+          name="direccion" required>
+        @if (registerCustomerForm.submitted && !registerCustomerForm.controls['direccion'].valid) {
+        <div class="text-danger">
+          La dirección es obligatoria.
+        </div>
+        }
+
+      </div>
+
+      <div class="form-group">
+        <label for="telefono" class="form-label">Número de teléfono</label>
+        <input type="number" class="form-control" id="telefono" placeholder="Número de teléfono"
+          [(ngModel)]="customer.phoneNumber" name="telefono" required>
+        @if (registerCustomerForm.submitted && !registerCustomerForm.controls['telefono'].valid) {
+        <div class="text-danger">
+          El número de teléfono es obligatorio.
+        </div>
+        }
+
+      </div>
+
+      <div class="form-group">
+        <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
+        <input type="date" class="form-control" id="fechaNacimiento" [(ngModel)]="customer.birthDate"
+          name="fechaNacimiento" required>
+        @if (registerCustomerForm.submitted && !registerCustomerForm.controls['fechaNacimiento'].valid) {
+        <div class="text-danger">
+          La fecha de nacimiento es obligatoria.
+        </div>
+        }
+
+      </div>
+
+      <hr>
+      <h3>Datos de Acceso</h3>
+
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Email" [(ngModel)]="user.email" name="email"
+          required email>
+        @if (registerCustomerForm.submitted && !registerCustomerForm.controls['email'].valid) {
+        <div class="text-danger">
+          El email es obligatorio y debe tener un formato válido.
+        </div>
+        }
+
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" placeholder="Contraseña" [(ngModel)]="user.password"
+          name="password" required>
+        @if (registerCustomerForm.submitted && !registerCustomerForm.controls['password'].valid) {
+        <div class="text-danger">
+          La contraseña es obligatoria.
+        </div>
+        }
+
+      </div>
+
+      <div class="form-group">
+        <label for="confirmarPassword" class="form-label">Confirmar la contraseña</label>
+        <input type="password" class="form-control" id="confirmarPassword" placeholder="Confirmar Contraseña"
+          [(ngModel)]="confirmarPassword" name="confirmarPassword" required>
+        @if (registerCustomerForm.submitted && (confirmarPassword !== user.password)) {
+        <div class="text-danger">
+          Las contraseñas no coinciden.
+        </div>
+        }
+
+      </div>
+
+      <button type="submit" class="btn btn-primary"
+        [disabled]="!registerCustomerForm.valid || (user.password !== confirmarPassword)">
+        Registrar
+      </button>
+      <button class="btn btn-dark m-3" routerLink="/login">Volver</button>
+    </fieldset>
+  </form>
+</div>

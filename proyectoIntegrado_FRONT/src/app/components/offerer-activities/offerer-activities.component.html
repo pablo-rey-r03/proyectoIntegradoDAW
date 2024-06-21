@@ -1,0 +1,30 @@
+@if (activities.length > 0) {
+<h1 class="container mt-4">Mis actividades</h1>
+<div class="table-responsive m-5">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <th>Actividad</th>
+      <th>Fecha</th>
+      <th>Ubicación</th>
+      <th>Modificar</th>
+      <th>Borrar</th>
+    </thead>
+    <tbody>
+      @for (a of activities; track $index) {
+      <tr>
+        <td>{{ a.name }}</td>
+        <td>{{ a.date | date }}</td>
+        <td>{{ a.location }}</td>
+        <td><button class="btn btn-warning" routerLink="/updateAct/{{a.id}}">Editar</button></td>
+        <td><button class="btn btn-danger" (click)="borrar(a.id, a.name)">Borrar</button></td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+} @else {
+<h1 class="container mt-4">No tienes actividades. :(</h1>
+}
+<br>
+<button class="btn btn-success" routerLink="/newAct">Crear nueva actividad</button>
+<button class="btn btn-dark" routerLink="/offerer">Volver</button>

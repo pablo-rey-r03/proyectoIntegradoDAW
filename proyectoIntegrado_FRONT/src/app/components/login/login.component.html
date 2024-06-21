@@ -1,0 +1,25 @@
+<div class="container greek-style">
+  <img src="../../../assets/image/Icono.jpeg" alt="Icono de la página" class="page-icon">
+  <h1>ÁGORA</h1>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" [(ngModel)]="credentials.email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" name="password" [(ngModel)]="credentials.password" type="password" required>
+    </div>
+    @if (showError) {
+    <div class="danger show">{{error}}</div>
+    <br>
+    }
+    <button class="btn btn-success" type="submit"
+      [disabled]="credentials.email == null || credentials.password == null">Login</button>
+  </form>
+  <blockquote>¿Quieres organizar a las masas? <a routerLink="/registerOfferer">Regístrate como STRATEGOS</a>
+  </blockquote>
+  <blockquote>¿Buscas planes diferentes en el ágora? <a routerLink="/registerCustomer">Regístrate como POLITES</a>
+  </blockquote>
+</div>
